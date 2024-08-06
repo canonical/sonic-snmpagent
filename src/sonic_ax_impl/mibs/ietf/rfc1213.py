@@ -360,19 +360,8 @@ class InterfacesUpdater(MIBUpdater):
 
     def aggregate_counters(self):
         """
-        For ports with l3 router interfaces l3 drops may be counted separately (RIF counters)
-        add l3 drops to l2 drop counters cache according to mapping
-
         For l3vlan map l3 counters to l2 counters
         """
-        for rif_sai_id, port_sai_id in self.rif_port_map.items():
-            if port_sai_id in self.if_id_map:
-                port_idx = mibs.get_index_from_str(self.if_id_map[port_sai_id])
-                for port_counter_name, rif_counter_name in mibs.RIF_DROPS_AGGR_MAP.items():
-                    self.if_counters[port_idx][port_counter_name] = \
-                    self.if_counters[port_idx].get(port_counter_name, 0) + \
-                    self.rif_counters[rif_sai_id].get(rif_counter_name, 0)
-
         for vlan_sai_id, vlan_name in self.vlan_name_map.items():
             for port_counter_name, rif_counter_name in mibs.RIF_COUNTERS_AGGR_MAP.items():
                 vlan_idx = mibs.get_index_from_str(vlan_name)
