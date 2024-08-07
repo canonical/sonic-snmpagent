@@ -195,14 +195,14 @@ class TestRegisterPDU(TestCase):
                b'\x00\x05\x00\x00\x07\x04\x00\x00\x00\x00\x00\x01\x00\x00\x17\x8b\x00\x00\x00\x03\x00\x00\x00\n\x00' \
                b'\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\t\x01\x12\x10\x00\x00\x00\x00M\x00\x00\x00\x00\x00\x00' \
                b'\x00\x00\x00\x00\x00\x18\x01\xcdL|\x00\x00\x00\x00\x00\x05\x00\x00\x02\x02\x00\x00\x00\x00\x00' \
-               # b'\x01\x00\x00\x00\x02'
+               b'\x01\x00\x00\x00\x02'
         ps = PDUStream(resp)
 
         try:
             for pdu in ps:
                 print(pdu)
         except exceptions.PDUUnpackError:
-            self.failIf('pdu' not in locals())
+            self.fail('pdu' not in locals())
 
     def test_openPDU_stream(self):
         resp = b'\x01\x12\x10\x00\x00\x00\x00\x07\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00`\x00\x00\x00\xfe\x00\x00\x00\x00\x00\x04\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00CSoftware for Open Networking in the Cloud (SONiC) -- SNMP sub-agent\x00'
@@ -211,7 +211,7 @@ class TestRegisterPDU(TestCase):
             for pdu in ps:
                 print(pdu)
         except exceptions.PDUUnpackError:
-            self.failIf('pdu' not in locals())
+            self.fail('pdu' not in locals())
 
 
 class TestGetPDU(TestCase):
