@@ -17,7 +17,7 @@ from .mibs.vendor import dell, cisco
 # Background task update frequency ( in seconds )
 DEFAULT_UPDATE_FREQUENCY = 5
 
-event_loop = asyncio.get_event_loop()
+event_loop = asyncio.new_event_loop()
 shutdown_task = None
 
 
