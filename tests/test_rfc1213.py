@@ -68,7 +68,7 @@ class TestNextHopUpdaterRedisException(TestCase):
                 self.updater.frequency = 1
                 self.updater.reinit_rate = 1
                 self.updater.update_counter = 1
-                loop = asyncio.get_event_loop()
+                loop = asyncio.new_event_loop()
                 loop.run_until_complete(self.updater.start())
                 loop.close()
 
